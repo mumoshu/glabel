@@ -1,5 +1,15 @@
 /**
- * 
+ * GLabel class
+ * copyright (c) 2009 KUOKA Yusuke - d.hatena.ne.jp/mumoshu
+ * @version 1.0
+ * @author KUOKA Yusuke
+ * @requires GOverlay
+ * @extends GOverlay
+ */
+
+/**
+ * @constructor
+ * @base GOVerlay
  * @param {GLatLng}
  *            latlng
  * @param {String}
@@ -7,7 +17,6 @@
  * @param {GPoint}
  *            anchor ラベルのDIV左上隅を基準とした、ラベルが地図に固定される場所のピクセル座標（デフォルト：new
  *            GPoint(0,0)）
- * @return
  */
 function GLabel(latlng, text, anchor) {
 	this.latlng_ = latlng;
@@ -57,8 +66,8 @@ GLabel.prototype.copy = function() {
 /**
  * Redraw the GLabel based on the current projection and zoom level
  * 
- * @param force
- *            地図が動いて入れば<code>true</code>
+ * @param {Boolean}
+ *            force 地図が動いて入れば<code>true</code>
  * @return
  */
 GLabel.prototype.redraw = function(force) {
@@ -70,6 +79,7 @@ GLabel.prototype.redraw = function(force) {
 	var p = this.map_.fromLatLngToDivPixel(this.latlng_);
 
 	// Calculate the DIV coordinates
-	this.div_.style.left = p.x - this.weight_ + this.anchor_.x - (this.div_.clientWidth / 2) + "px";
+	this.div_.style.left = p.x - this.weight_ + this.anchor_.x
+			- (this.div_.clientWidth / 2) + "px";
 	this.div_.style.top = p.y - this.weight_ + this.anchor_.y + "px";
 };

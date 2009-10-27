@@ -36,7 +36,11 @@ GLabel.prototype.initialize = function(map) {
 	// do not break the line
 	div.style.whiteSpace = "pre";
 	div.style.position = "absolute";
-	div.textContent = this.text_;
+	if(typeof div.textContent != 'undefined') {
+		div.textContent = this.text_;
+	} else {
+		div.innerText = this.text_;
+	}
 	div.className = "glabel";
 
 	map.getPane(G_MAP_MARKER_PANE).appendChild(div);
